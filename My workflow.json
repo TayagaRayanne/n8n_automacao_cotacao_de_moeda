@@ -1,9 +1,8 @@
 {
-  "name": "My workflow",
   "nodes": [
     {
       "parameters": {
-        "content": "Monitoramento Webhoock",
+        "content": "Monitoramento Diário por Agendamento",
         "height": 240,
         "width": 192,
         "color": 3
@@ -32,21 +31,6 @@
       "typeVersion": 1,
       "id": "2e006578-4a25-47c0-8b3d-525ec1753484",
       "name": "Sticky Note1"
-    },
-    {
-      "parameters": {
-        "path": "nova_transacao",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -80,
-        0
-      ],
-      "id": "551f486d-8c3e-4455-bd70-861a202fdf21",
-      "name": "Monitora par_moedas",
-      "webhookId": "b96da76b-7d46-488a-8c0b-2ec198c8d9f1"
     },
     {
       "parameters": {
@@ -256,21 +240,26 @@
           "name": "Gmail account"
         }
       }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -80,
+        0
+      ],
+      "id": "8312bfd3-8afb-4ef1-be8b-5a7afb8419a7",
+      "name": "Monitora par_moedas"
     }
   ],
-  "pinData": {},
   "connections": {
-    "Monitora par_moedas": {
-      "main": [
-        [
-          {
-            "node": "Consulta cotação do par_moedas",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Consulta cotação do par_moedas": {
       "main": [
         [
@@ -315,17 +304,22 @@
       "main": [
         []
       ]
+    },
+    "Monitora par_moedas": {
+      "main": [
+        [
+          {
+            "node": "Consulta cotação do par_moedas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "active": false,
-  "settings": {
-    "executionOrder": "v1"
-  },
-  "versionId": "6d206678-e8e7-41ff-8812-66521d2982f5",
+  "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "b2f1da8d6832d551c9caca55a996e3e1fc75b080c4f90100b358f80813ff12c1"
-  },
-  "id": "uF1AtLCmtEvCMzs1",
-  "tags": []
+  }
 }
