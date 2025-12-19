@@ -51,5 +51,15 @@ Ativação: Vincule suas credenciais no n8n e execute o fluxo!
 
 ### 📸 Visual do Fluxo
 
+### Imagem do fluxo funcionado
 <img width="1920" height="921" alt="novo fluxo" src="https://github.com/user-attachments/assets/45694455-98c2-40ec-9b97-4d40d5677640" />
+
+### Imagem do Render onde o projeto está ativo e funcionando
+<img width="1064" height="604" alt="Captura de tela 2025-12-19 173531" src="https://github.com/user-attachments/assets/f010900e-14fd-473d-9ae7-29ac277a3e96" />
+
+### Imagem da Planilha que recebe as informações automaticamente
+<img width="907" height="916" alt="Captura de tela 2025-12-19 173403" src="https://github.com/user-attachments/assets/7e074d05-db04-4398-a7cd-64bdac4a7798" />
+
+### Imagem do E-mail também enviado automaticamente
+<img width="959" height="688" alt="Captura de tela 2025-12-19 173717" src="https://github.com/user-attachments/assets/145e0303-8b92-46e3-b162-9a711f22b11e" />
 
