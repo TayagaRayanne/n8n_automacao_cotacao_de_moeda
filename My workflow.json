@@ -1,0 +1,331 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "Monitoramento Webhoock",
+        "height": 240,
+        "width": 192,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -128,
+        -64
+      ],
+      "typeVersion": 1,
+      "id": "6ac95572-fcde-4561-b596-5cd54f6d36cb",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "Chamada Api",
+        "height": 240,
+        "width": 208,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        144,
+        -64
+      ],
+      "typeVersion": 1,
+      "id": "2e006578-4a25-47c0-8b3d-525ec1753484",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "path": "nova_transacao",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -80,
+        0
+      ],
+      "id": "551f486d-8c3e-4455-bd70-861a202fdf21",
+      "name": "Monitora par_moedas",
+      "webhookId": "b96da76b-7d46-488a-8c0b-2ec198c8d9f1"
+    },
+    {
+      "parameters": {
+        "url": "=https://economia.awesomeapi.com.br/json/last/USD-BRL",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "9c74f17f-62c7-4c6c-8d7c-cee523aa9a1d",
+      "name": "Consulta cotação do par_moedas"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "98058278-b518-4ac5-b336-540ac412bfe1",
+              "name": "valor_convertido",
+              "value": "={{ $json.USDBRL.bid.toNumber().toFixed(2)}}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "bf6076f6-a83a-4d19-927f-0ad4f83316d9",
+      "name": "Conversão Dolar x Real"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.valor_convertido }}",
+                    "rightValue": 5.3,
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    },
+                    "id": "71818092-b752-47dd-ab8f-8a278f7ed944"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Não comprar!"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7ecd55e6-e06a-4e29-9460-46fe3d5ef0fc",
+                    "leftValue": "={{ $json.valor_convertido }}",
+                    "rightValue": 4.99,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Comprar muito!"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        656,
+        -16
+      ],
+      "id": "8a1e0557-f495-41c7-8406-1bc63a4e3807",
+      "name": "Cotação Dólar (mais de uma condição)"
+    },
+    {
+      "parameters": {
+        "content": "Classificação",
+        "height": 272,
+        "width": 288,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        592,
+        -80
+      ],
+      "id": "14e9440b-b012-441f-8178-5265cbfedb04",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "19v2XAd5uWEp1RU-SxycopoFBP6vuYyfHdRn2ZfmyyQw",
+          "mode": "list",
+          "cachedResultName": "Cotação dDólar",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/19v2XAd5uWEp1RU-SxycopoFBP6vuYyfHdRn2ZfmyyQw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Compra",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/19v2XAd5uWEp1RU-SxycopoFBP6vuYyfHdRn2ZfmyyQw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Data/Hora": "={{ $now.format('dd/MM/yyyy HH:mm') }}",
+            "Cotação": "={{$json.valor_convertido}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Data/Hora",
+              "displayName": "Data/Hora",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cotação",
+              "displayName": "Cotação",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1008,
+        -144
+      ],
+      "id": "21956769-6cb9-4b63-810f-89b45f7e5d2a",
+      "name": "Salva a cotação na planilha",
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZYs9tWsXp31JYmbI",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "tayga_rayanne@hotmail.com",
+        "subject": "Cotação Dólar!",
+        "emailType": "text",
+        "message": "={{ \"Olá! Este é o seu lembrete de cotação atualizado. ⚠️\" + \"\\n\" + \n\"O valor do dólar agora é: \" + \"R$ \" + $json.valor_convertido + \" 💸\" + \"\\n\" +\n\"É hora de comprar muito! ✅\" + \"\\n\" + \"\\n\" + \"Até a próxima atualização!\" }}",
+        "options": {
+          "senderName": "Cotação Dólar"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1008,
+        64
+      ],
+      "id": "a4e573e8-b2ef-447b-ad49-d3e046871b32",
+      "name": "Send a message",
+      "webhookId": "0fadce89-80d2-43b5-bda7-cecfd84202f0",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4TdAOiB4Z3wctiLC",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Monitora par_moedas": {
+      "main": [
+        [
+          {
+            "node": "Consulta cotação do par_moedas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consulta cotação do par_moedas": {
+      "main": [
+        [
+          {
+            "node": "Conversão Dolar x Real",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Conversão Dolar x Real": {
+      "main": [
+        [
+          {
+            "node": "Cotação Dólar (mais de uma condição)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cotação Dólar (mais de uma condição)": {
+      "main": [
+        [
+          {
+            "node": "Salva a cotação na planilha",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salva a cotação na planilha": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "6d206678-e8e7-41ff-8812-66521d2982f5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b2f1da8d6832d551c9caca55a996e3e1fc75b080c4f90100b358f80813ff12c1"
+  },
+  "id": "uF1AtLCmtEvCMzs1",
+  "tags": []
+}
