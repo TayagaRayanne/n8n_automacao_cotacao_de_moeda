@@ -61,5 +61,6 @@ Ativação: Vincule suas credenciais no n8n e execute o fluxo!
 <img width="907" height="916" alt="Captura de tela 2025-12-19 173403" src="https://github.com/user-attachments/assets/7e074d05-db04-4398-a7cd-64bdac4a7798" />
 
 ### Imagem do E-mail também enviado automaticamente
-<img width="959" height="688" alt="Captura de tela 2025-12-19 173717" src="https://github.com/user-attachments/assets/145e0303-8b92-46e3-b162-9a711f22b11e" />
+
+<img width="911" height="654" alt="Captura de tela 2025-12-19 173717" src="https://github.com/user-attachments/assets/57315e22-1efd-4e47-be77-d5ed6ed21f0a" />
 
