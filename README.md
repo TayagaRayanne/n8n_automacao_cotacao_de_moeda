@@ -27,6 +27,13 @@ Segurança de Dados: Uso de Variáveis de Ambiente para proteger informações s
 Ambiente de Teste: Configuração de usuários de teste na tela de consentimento do Google para validação de fluxos pessoais;
 Comunicação Limpa: E-mails disparados via API oficial.
 
+### 💡 Variáveis de Ambiente:
+
+| Variável | Valor Sugerido | Descrição |
+| :--- | :--- | :--- |
+| `N8N_PORT` | `10000` | Porta padrão para o plano Free do Render |
+| `WEBHOOK_URL` | `https://seu-app.onrender.com/` | Essencial para o redirecionamento OAuth do Google |
+
 ### 🌐 Aplicação em Produção
 
 A aplicação está hospedada e operando de forma autônoma no Render. Você pode visualizar o endpoint da automação através do link abaixo:
