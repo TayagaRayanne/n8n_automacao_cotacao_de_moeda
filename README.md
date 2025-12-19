@@ -27,6 +27,14 @@ Segurança de Dados: Uso de Variáveis de Ambiente para proteger informações s
 Ambiente de Teste: Configuração de usuários de teste na tela de consentimento do Google para validação de fluxos pessoais;
 Comunicação Limpa: E-mails disparados via API oficial.
 
+### 🌐 Aplicação em Produção
+
+A aplicação está hospedada e operando de forma autônoma no Render. Você pode visualizar o endpoint da automação através do link abaixo:
+
+Link do Serviço: https://n8n-automacao-cotacao-de-moeda.onrender.com/
+
+Status: Online (Operando via Gatilho de Agendamento Diariamente)
+
 ### 📂 Como Replicar este Projeto
 
 Importação: Faça o download do arquivo .json deste repositório e importe-o no seu painel do n8n;
