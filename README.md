@@ -1,2 +1,37 @@
-# n8n_automacao_cotacao_de_moeda
-O fluxo pesquisa a cotação da moeda, realiza a conversão e gera alertas por e-mail de acordo com valores mínimos de referência. Quando os valores são mais altos que o limite, o sistema salva automaticamente os dados em uma planilha do Google Sheets, registrando a cotação, a data e a hora, criando assim um histórico detalhado de picos de valor.
+💹 Automação de Cotação de Moedas
+
+Integração Inteligente: n8n + Google APIs + JavaScript
+
+📝 Descrição do Projeto
+
+Este projeto foi desenvolvido no processo de aprendizagem da ferramenta N8N. Ele consiste em um fluxo de trabalho (workflow) automatizado que monitora a cotação do dólar em tempo real, realiza conversões financeiras e executa ações inteligentes com base em condições pré-definidas.
+A lógica consiste em:
+
+Monitoramento: Realiza pesquisas periódicas da cotação de moedas via API;
+Processamento: Converte os valores para Real (BRL) usando JavaScript;
+Tomada de Decisão: * Alertas: Se o valor atingir o mínimo esperado, gera um alerta por e-mail personalizado;
+Histórico: Se o valor for superior a uma referência alta, ele registra os dados (valor, data e hora) em uma planilha, criando um histórico de picos.
+
+🚀 Tecnologias Utilizadas
+
+n8n (Self-hosted/Render): Orquestrador de workflows para automação de processos;
+Google Sheets API: Utilizada para o armazenamento e persistência de dados históricos;
+Gmail API: Integração para envio de notificações automáticas via OAuth 2.0;
+JavaScript: Empregado no tratamento de dados, lógica condicional e formatação de mensagens em HTML;
+AwesomeAPI: Fonte de dados externa para consumo de cotações em tempo real.
+
+🔐 Destaques Técnicos & Segurança
+
+Autenticação Robusta: Implementação de OAuth 2.0 para garantir uma conexão segura com o Google Cloud Console, utilizando Client ID e Client Secret;
+Segurança de Dados: Uso de Variáveis de Ambiente para proteger informações sensíveis, evitando a exposição de chaves no código-fonte;
+Ambiente de Teste: Configuração de usuários de teste na tela de consentimento do Google para validação de fluxos pessoais;
+Comunicação Limpa: E-mails disparados via API oficial.
+
+📂 Como Replicar este Projeto
+
+Importação: Faça o download do arquivo .json deste repositório e importe-o no seu painel do n8n;
+Google Cloud: Crie um projeto no Google Cloud Console, ative as APIs do Gmail e Sheets e configure suas credenciais;
+Configuração de Redirecionamento: No Google, adicione o seu endereço de callback do n8n (ex: https://seu-n8n.render.com/rest/oauth2-credential/callback);
+Ativação: Vincule suas credenciais no n8n e execute o fluxo!
+
+📸 Visual do Fluxo
