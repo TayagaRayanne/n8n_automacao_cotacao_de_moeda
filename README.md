@@ -7,7 +7,7 @@ Integração Inteligente: n8n + Google APIs + JavaScript
 Este projeto foi desenvolvido no processo de aprendizagem da ferramenta N8N. Ele consiste em um fluxo de trabalho (workflow) automatizado que monitora a cotação do dólar em tempo real, realiza conversões financeiras e executa ações inteligentes com base em condições pré-definidas.
 A lógica consiste em:
 
-Monitoramento: Realiza pesquisas periódicas da cotação de moedas via API;
+Monitoramento: Monitoramento Autônomo: Utiliza um gatilho de agendamento (Schedule Trigger) para realizar consultas periódicas sem intervenção humana.;
 Processamento: Converte os valores para Real (BRL) usando JavaScript;
 Tomada de Decisão: * Alertas: Se o valor atingir o mínimo esperado, gera um alerta por e-mail personalizado;
 Histórico: Se o valor for superior a uma referência alta, ele registra os dados (valor, data e hora) em uma planilha, criando um histórico de picos.
@@ -31,9 +31,10 @@ Comunicação Limpa: E-mails disparados via API oficial.
 
 Importação: Faça o download do arquivo .json deste repositório e importe-o no seu painel do n8n;
 Google Cloud: Crie um projeto no Google Cloud Console, ative as APIs do Gmail e Sheets e configure suas credenciais;
-Configuração de Redirecionamento: No Google, adicione o seu endereço de callback do n8n (ex: https://seu-n8n.render.com/rest/oauth2-credential/callback);
+Configuração de Redirecionamento:No Google, adicione o seu endereço de callback do n8n. Importante: Se usar o Render, configure a variável de ambiente WEBHOOK_URL com o link do seu serviço para evitar erros de redirect_uri_mismatch.;
 Ativação: Vincule suas credenciais no n8n e execute o fluxo!
 
 ### 📸 Visual do Fluxo
 
-<img width="1717" height="920" alt="Captura de tela 2025-12-19 114615" src="https://github.com/user-attachments/assets/18370aff-df01-4c41-b38f-24581c6d8471" />
+<img width="1920" height="921" alt="novo fluxo" src="https://github.com/user-attachments/assets/45694455-98c2-40ec-9b97-4d40d5677640" />
+
