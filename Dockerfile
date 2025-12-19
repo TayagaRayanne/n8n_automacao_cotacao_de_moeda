@@ -1,7 +1,15 @@
-FROM n8nio/n8n:latest
-USER root
-# Define a porta que o Render exige
+# Usamos uma imagem base do Node.js que é padrão no Render
+FROM node:18-alpine
+
+# Instala as dependências necessárias para o n8n rodar no Alpine
+RUN apk add --no-cache python3 make g++
+
+# Instala o n8n globalmente
+RUN npm install -g n8n
+
+# Define a porta do Render
 ENV PORT=10000
 EXPOSE 10000
-# Usa o caminho absoluto (completo) para o executável do n8n
-CMD ["/usr/local/bin/n8n", "start"]
+
+# Inicia o n8n usando o comando direto instalado pelo npm
+CMD ["n8n", "start"]
